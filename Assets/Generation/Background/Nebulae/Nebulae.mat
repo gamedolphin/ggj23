@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StartStuff
-  m_Shader: {fileID: 4800000, guid: cbbe4108c1f2b910eb16f3ea6680dac8, type: 3}
+  m_Name: Nebulae
+  m_Shader: {fileID: 4800000, guid: 74bc7bf8b7b9dbed5a595fc16ac58f71, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _REDUCEBACKGROUND_ON
@@ -111,7 +111,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _OCTAVES: 7.9
+    - _OCTAVES: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _Pixels: 500
@@ -129,6 +129,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - _BackgroundColor: {r: 0.0901961, g: 0.0901961, b: 0.0666667, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
