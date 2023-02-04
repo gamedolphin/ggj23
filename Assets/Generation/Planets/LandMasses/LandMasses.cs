@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-public class LandMasses : IPlanet {
+public class LandMasses : IPlanet, ILit
+{
 
     [SerializeField] Color ColorLand1 = ColorUtil.FromRGB("#C8D45D");
     [SerializeField] Color ColorLand2 = ColorUtil.FromRGB("#63AB3F");
@@ -25,6 +26,20 @@ public class LandMasses : IPlanet {
     Material WaterMat;
     Material LandMat;
     Material CloudsMat;
+
+    [SerializeField] private Vector3 lightSource;
+    public Vector3 LightSource
+    {
+        get
+        {
+            return lightSource;
+        }
+
+        set
+        {
+            lightSource = value;
+        }
+    }
 
     void Start()
     {
@@ -50,10 +65,11 @@ public class LandMasses : IPlanet {
         SetCloudCover(((float)rng.NextDouble() * 0.25f) + 0.35f);
         if (GenerateColors)
         {
-            
+
         }
 
         UpdateColor();
+        SetLight(LightSource);
     }
 
     void Update()
@@ -72,6 +88,7 @@ public class LandMasses : IPlanet {
         WaterMat.SetVector(ShaderProperties.Key_Light_origin, pos);
         LandMat.SetVector(ShaderProperties.Key_Light_origin, pos);
         CloudsMat.SetVector(ShaderProperties.Key_Light_origin, pos);
+        LightSource = pos;
     }
 
     public void SetCloudCover(float cover)
@@ -96,10 +113,10 @@ public class LandMasses : IPlanet {
     public void UpdateTime(float time)
     {
         CloudsMat.SetFloat(ShaderProperties.Key_time, time * 0.5f);
-        WaterMat.SetFloat(ShaderProperties.Key_time, time );
+        WaterMat.SetFloat(ShaderProperties.Key_time, time);
         LandMat.SetFloat(ShaderProperties.Key_time, time);
     }
-    
+
     public void UpdateColor()
     {
         LandMat.SetColor(ShaderProperties.Key_Color1, ColorLand1);

@@ -3,20 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NoAtmosphere : IPlanet {
-   
+public class NoAtmosphere : IPlanet, ILit
+{
+
     [SerializeField] Color ColorLand1 = ColorUtil.FromRGB("#A3A7C2");
     [SerializeField] Color ColorLand2 = ColorUtil.FromRGB("#4C6885");
     [SerializeField] Color ColorLand3 = ColorUtil.FromRGB("#3A3F5E");
 
     [SerializeField] Color ColorCrater1 = ColorUtil.FromRGB("#4C6885");
     [SerializeField] Color ColorCrater2 = ColorUtil.FromRGB("#3A3F5E");
-    
+
 
     [SerializeField] GameObject Land;
     [SerializeField] GameObject Craters;
     Material LandMat;
     Material CratersMat;
+
+    [SerializeField] private Vector3 lightSource;
+    public Vector3 LightSource
+    {
+        get
+        {
+            return lightSource;
+        }
+
+        set
+        {
+            lightSource = value;
+        }
+    }
 
     void Start()
     {
@@ -40,10 +55,11 @@ public class NoAtmosphere : IPlanet {
 
         if (GenerateColors)
         {
-           
+
         }
 
         UpdateColor();
+        SetLight(LightSource);
     }
 
     void Update()
@@ -60,6 +76,7 @@ public class NoAtmosphere : IPlanet {
     {
         LandMat.SetVector(ShaderProperties.Key_Light_origin, pos);
         CratersMat.SetVector(ShaderProperties.Key_Light_origin, pos);
+        LightSource = pos;
     }
 
     public void SetSeed(float seed)
@@ -76,8 +93,8 @@ public class NoAtmosphere : IPlanet {
 
     public void UpdateTime(float time)
     {
-        LandMat.SetFloat(ShaderProperties.Key_time, time  * 0.5f);
-        CratersMat.SetFloat(ShaderProperties.Key_time, time  * 0.5f);
+        LandMat.SetFloat(ShaderProperties.Key_time, time * 0.5f);
+        CratersMat.SetFloat(ShaderProperties.Key_time, time * 0.5f);
     }
 
 

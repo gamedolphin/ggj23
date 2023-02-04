@@ -3,18 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Asteroid : IPlanet {
-    
+public class Asteroid : IPlanet, ILit
+{
+
     [SerializeField] Color Color1 = ColorUtil.FromRGB("#a3a7c2");
     [SerializeField] Color Color2 = ColorUtil.FromRGB("#4c6885");
     [SerializeField] Color Color3 = ColorUtil.FromRGB("#3a3f5e");
+
+    [SerializeField] private Vector3 lightSource;
+    public Vector3 LightSource
+    {
+        get
+        {
+            return lightSource;
+        }
+
+        set
+        {
+            lightSource = value;
+        }
+    }
 
 
     [SerializeField] GameObject AsteroidSprite;
 
     private Material AsteroidMat;
-    
-    private string[] init_colors = new string[] {"#a3a7c2", "#4c6885", "#3a3f5e"};
+
+    private string[] init_colors = new string[] { "#a3a7c2", "#4c6885", "#3a3f5e" };
 
     void Start()
     {
@@ -42,6 +57,7 @@ public class Asteroid : IPlanet {
         }
 
         UpdateColor();
+        SetLight(LightSource);
     }
 
     public void SetPixel(float amount)
@@ -52,6 +68,7 @@ public class Asteroid : IPlanet {
     public void SetLight(Vector2 pos)
     {
         AsteroidMat.SetVector(ShaderProperties.Key_Light_origin, pos);
+        LightSource = pos;
     }
 
     public void SetSeed(float seed)

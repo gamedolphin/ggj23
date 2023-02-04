@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IceWorld : IPlanet {
+public class IceWorld : IPlanet, ILit
+{
 
     [SerializeField] Color ColorLand1 = ColorUtil.FromRGB("#faffff");
     [SerializeField] Color ColorLand2 = ColorUtil.FromRGB("#c7d4e1");
@@ -24,7 +25,21 @@ public class IceWorld : IPlanet {
     Material PlanetUnderMat;
     Material LakesMat;
     Material CloudsMat;
-    
+
+    [SerializeField] private Vector3 lightSource;
+    public Vector3 LightSource
+    {
+        get
+        {
+            return lightSource;
+        }
+
+        set
+        {
+            lightSource = value;
+        }
+    }
+
     void Start()
     {
         PlanetUnderMat = PlanetUnder.GetComponent<SpriteRenderer>().material;
@@ -53,6 +68,7 @@ public class IceWorld : IPlanet {
         }
 
         UpdateColor();
+        SetLight(LightSource);
     }
 
     void Update()
@@ -72,6 +88,7 @@ public class IceWorld : IPlanet {
         PlanetUnderMat.SetVector(ShaderProperties.Key_Light_origin, pos);
         LakesMat.SetVector(ShaderProperties.Key_Light_origin, pos);
         CloudsMat.SetVector(ShaderProperties.Key_Light_origin, pos);
+        LightSource = pos;
     }
     void SetCloudCover(float cover)
     {
@@ -94,9 +111,9 @@ public class IceWorld : IPlanet {
 
     public void UpdateTime(float time)
     {
-        
+
         CloudsMat.SetFloat(ShaderProperties.Key_time, time * 0.5f);
-        PlanetUnderMat.SetFloat(ShaderProperties.Key_time, time );
+        PlanetUnderMat.SetFloat(ShaderProperties.Key_time, time);
         LakesMat.SetFloat(ShaderProperties.Key_time, time);
     }
 

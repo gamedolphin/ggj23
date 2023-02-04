@@ -83,10 +83,34 @@ public class SolarSystem : MonoBehaviour
             var angle = 360 * (float)rng.NextDouble();
             planet.transform.rotation = Quaternion.Euler(0, 0, angle);
 
+            var pl = planet.GetComponent<IPlanet>();
+            if (pl != null)
+            {
+                pl.Seed = "Seed" + seed;
+            }
+
+            var lit = planet.GetComponent<ILit>();
+            if (lit != null)
+            {
+                lit.LightSource = new Vector2(0.5f, 0.5f);
+            }
+
             radius += planet.minDistance + (float)scale; ;
         }
 
         UpdateBackground(sp, radius);
+    }
+
+    public Vector2 Rotate(Vector2 v, float degrees)
+    {
+        float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
+        float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+
+        float tx = v.x;
+        float ty = v.y;
+        v.x = (cos * tx) - (sin * ty);
+        v.y = (sin * tx) + (cos * ty);
+        return v;
     }
 
     private Background SetupBackground()

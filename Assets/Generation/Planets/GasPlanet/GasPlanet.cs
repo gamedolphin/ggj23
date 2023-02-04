@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GasPlanet : IPlanet {
-    
+public class GasPlanet : IPlanet, ILit
+{
+
     [SerializeField] Color ColorCloud1_1 = ColorUtil.FromRGB("#3b2027");
     [SerializeField] Color ColorCloud1_2 = ColorUtil.FromRGB("#3b2027");
     [SerializeField] Color ColorCloud1_3 = ColorUtil.FromRGB("#21181b");
@@ -18,6 +19,21 @@ public class GasPlanet : IPlanet {
 
     [SerializeField] GameObject Cloud1;
     [SerializeField] GameObject Cloud2;
+
+    [SerializeField] private Vector3 lightSource;
+    public Vector3 LightSource
+    {
+        get
+        {
+            return lightSource;
+        }
+
+        set
+        {
+            lightSource = value;
+        }
+    }
+
     Material Cloud1Mat;
     Material Cloud2Mat;
 
@@ -43,12 +59,13 @@ public class GasPlanet : IPlanet {
         SetCloudCoverCloud1(0f);
         // Random.Range(0.28f, 0.5f)
         SetCloudCoverCloud2(((float)rng.NextDouble() * 0.25f) + 0.3f);
-        
+
         if (GenerateColors)
         {
         }
 
         UpdateColor();
+        SetLight(LightSource);
     }
 
     void Update()
@@ -79,7 +96,7 @@ public class GasPlanet : IPlanet {
     }
     public void SetCloudCoverCloud2(float cover)
     {
-        
+
         Cloud2Mat.SetFloat(ShaderProperties.Key_Cloud_cover, cover);
     }
 
@@ -92,7 +109,7 @@ public class GasPlanet : IPlanet {
     public void UpdateTime(float time)
     {
         Cloud1Mat.SetFloat(ShaderProperties.Key_time, time * 0.5f);
-        Cloud2Mat.SetFloat(ShaderProperties.Key_time, time  * 0.5f);
+        Cloud2Mat.SetFloat(ShaderProperties.Key_time, time * 0.5f);
     }
 
 

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LavaWorld : IPlanet {
-    
+public class LavaWorld : IPlanet, ILit
+{
+
     [SerializeField] Color ColorLand1 = ColorUtil.FromRGB("#8f4d57");
     [SerializeField] Color ColorLand2 = ColorUtil.FromRGB("#52333f");
     [SerializeField] Color ColorLand3 = ColorUtil.FromRGB("#3d2936");
@@ -23,6 +24,19 @@ public class LavaWorld : IPlanet {
     Material CratersMat;
     Material RiverMat;
 
+    [SerializeField] private Vector3 lightSource;
+    public Vector3 LightSource
+    {
+        get
+        {
+            return lightSource;
+        }
+
+        set
+        {
+            lightSource = value;
+        }
+    }
 
     private void Start()
     {
@@ -52,6 +66,7 @@ public class LavaWorld : IPlanet {
         }
 
         UpdateColor();
+        SetLight(LightSource);
     }
 
     void Update()
@@ -76,6 +91,7 @@ public class LavaWorld : IPlanet {
         PlanetMat.SetVector(ShaderProperties.Key_Light_origin, pos);
         CratersMat.SetVector(ShaderProperties.Key_Light_origin, pos);
         RiverMat.SetVector(ShaderProperties.Key_Light_origin, pos);
+        LightSource = pos;
     }
 
     public void SetSeed(float seed)
@@ -95,8 +111,8 @@ public class LavaWorld : IPlanet {
     public void UpdateTime(float time)
     {
         PlanetMat.SetFloat(ShaderProperties.Key_time, time * 0.5f);
-        CratersMat.SetFloat(ShaderProperties.Key_time, time  * 0.5f);
-        RiverMat.SetFloat(ShaderProperties.Key_time, time  * 0.5f);
+        CratersMat.SetFloat(ShaderProperties.Key_time, time * 0.5f);
+        RiverMat.SetFloat(ShaderProperties.Key_time, time * 0.5f);
     }
 
     public void UpdateColor()

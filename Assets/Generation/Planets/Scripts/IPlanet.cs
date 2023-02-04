@@ -17,8 +17,14 @@ public class CustomEditorPlanetGen : Editor
     }
 }
 
+public interface ILit
+{
+    Vector3 LightSource { get; set; }
+    void SetLight(Vector2 pos);
+}
 
-public abstract class IPlanet : MonoBehaviour {
+public abstract class IPlanet : MonoBehaviour
+{
 
     [SerializeField] public int Pixel = 100;
     [SerializeField] public string Seed = "Seed";

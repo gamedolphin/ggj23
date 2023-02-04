@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DryTerran : IPlanet {
-    
+public class DryTerran : IPlanet, ILit
+{
+
     [SerializeField] Color ColorLand1 = ColorUtil.FromRGB("#ff8933");
     [SerializeField] Color ColorLand2 = ColorUtil.FromRGB("#e64539");
     [SerializeField] Color ColorLand3 = ColorUtil.FromRGB("#ad2f45");
@@ -13,7 +14,21 @@ public class DryTerran : IPlanet {
     [SerializeField] Color ColorLand5 = ColorUtil.FromRGB("#3d2936");
 
     [SerializeField] private GameObject Land;
-    
+
+    [SerializeField] private Vector3 lightSource;
+    public Vector3 LightSource
+    {
+        get
+        {
+            return lightSource;
+        }
+
+        set
+        {
+            lightSource = value;
+        }
+    }
+
     Material LandMat;
 
     private float[] _color_times = new float[] { 0, 0.2f, 0.4f, 0.6f, 1.0f };
@@ -41,11 +56,12 @@ public class DryTerran : IPlanet {
 
         if (GenerateColors)
         {
-            // maybe later 
+            // maybe later
 
         }
 
         UpdateColor();
+        SetLight(LightSource);
     }
 
     void Update()
@@ -60,6 +76,7 @@ public class DryTerran : IPlanet {
     public void SetLight(Vector2 pos)
     {
         LandMat.SetVector(ShaderProperties.Key_Light_origin, pos);
+        LightSource = pos;
     }
 
     public void SetSeed(float seed)
@@ -74,7 +91,7 @@ public class DryTerran : IPlanet {
 
     public void UpdateTime(float time)
     {
-        LandMat.SetFloat(ShaderProperties.Key_time, time  );
+        LandMat.SetFloat(ShaderProperties.Key_time, time);
     }
 
     public void UpdateColor()

@@ -4,8 +4,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LandRivers : IPlanet {
-    
+public class LandRivers : IPlanet, ILit
+{
+
 
     [SerializeField] Color ColorLand1 = ColorUtil.FromRGB("#63AB3F");
     [SerializeField] Color ColorLand2 = ColorUtil.FromRGB("#3B7D4F");
@@ -25,6 +26,20 @@ public class LandRivers : IPlanet {
 
     Material LandMat;
     Material CloudMat;
+
+    [SerializeField] private Vector3 lightSource;
+    public Vector3 LightSource
+    {
+        get
+        {
+            return lightSource;
+        }
+
+        set
+        {
+            lightSource = value;
+        }
+    }
 
     void Start()
     {
@@ -49,10 +64,11 @@ public class LandRivers : IPlanet {
         SetCloudCover(((float)rng.NextDouble() * 0.25f) + 0.35f);
         if (GenerateColors)
         {
-            
+
         }
 
         UpdateColor();
+        SetLight(LightSource);
     }
 
     void Update()
@@ -70,6 +86,7 @@ public class LandRivers : IPlanet {
     {
         LandMat.SetVector(ShaderProperties.Key_Light_origin, pos);
         CloudMat.SetVector(ShaderProperties.Key_Light_origin, pos);
+        LightSource = pos;
     }
 
     public void SetCloudCover(float cover)

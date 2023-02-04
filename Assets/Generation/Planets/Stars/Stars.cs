@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Stars : IPlanet {
+public class Stars : IPlanet, ILit
+{
     [SerializeField] Color ColorBackground = ColorUtil.FromRGB("#ffffe4");
 
     [SerializeField] Color ColorStar1 = ColorUtil.FromRGB("#f5ffe8");
@@ -22,6 +23,20 @@ public class Stars : IPlanet {
     Material StarBackgroundMat;
     Material StarMat;
     Material StarFlaresMat;
+
+    [SerializeField] private Vector3 lightSource;
+    public Vector3 LightSource
+    {
+        get
+        {
+            return lightSource;
+        }
+
+        set
+        {
+            lightSource = value;
+        }
+    }
 
     // timing Gradient for the star
     float[] _color_times_star = new float[4] { 0f, 0.33f, 0.66f, 1.0f };
@@ -74,6 +89,7 @@ public class Stars : IPlanet {
 
 
         UpdateColor();
+        SetLight(LightSource);
     }
 
     // Update is called once per frame
@@ -115,7 +131,7 @@ public class Stars : IPlanet {
         StarFlaresMat.SetFloat(ShaderProperties.Key_Rotation, r);
     }
 
-    
+
 
     public void UpdateColor()
     {

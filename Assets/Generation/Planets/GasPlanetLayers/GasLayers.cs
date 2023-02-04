@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GasLayers : IPlanet {
-  
+public class GasLayers : IPlanet, ILit
+{
+
     [SerializeField] Color Color1 = ColorUtil.FromRGB("#eec39a");
     [SerializeField] Color Color2 = ColorUtil.FromRGB("#d9a066");
     [SerializeField] Color Color3 = ColorUtil.FromRGB("#8f563b");
@@ -16,7 +17,21 @@ public class GasLayers : IPlanet {
 
     [SerializeField] GameObject GasPlanet;
     [SerializeField] GameObject Ring;
-    
+
+    [SerializeField] private Vector3 lightSource;
+    public Vector3 LightSource
+    {
+        get
+        {
+            return lightSource;
+        }
+
+        set
+        {
+            lightSource = value;
+        }
+    }
+
     Material GasPlanetMat;
     Material RingMat;
 
@@ -47,6 +62,7 @@ public class GasLayers : IPlanet {
         }
 
         UpdateColor();
+        SetLight(LightSource);
     }
 
     void Update()
@@ -62,8 +78,10 @@ public class GasLayers : IPlanet {
 
     public void SetLight(Vector2 pos)
     {
-        GasPlanetMat.SetVector(ShaderProperties.Key_Light_origin, pos * 1.3f  );
-        RingMat.SetVector(ShaderProperties.Key_Light_origin, pos * 1.3f );
+        GasPlanetMat.SetVector(ShaderProperties.Key_Light_origin, pos * 1.3f);
+        RingMat.SetVector(ShaderProperties.Key_Light_origin, pos * 1.3f);
+
+        LightSource = pos;
     }
 
     public void SetSeed(float seed)
@@ -81,7 +99,7 @@ public class GasLayers : IPlanet {
     public void UpdateTime(float time)
     {
         GasPlanetMat.SetFloat(ShaderProperties.Key_time, time * 0.5f);
-        RingMat.SetFloat(ShaderProperties.Key_time, time  * 0.5f * -3f);
+        RingMat.SetFloat(ShaderProperties.Key_time, time * 0.5f * -3f);
     }
 
     public void UpdateColor()
