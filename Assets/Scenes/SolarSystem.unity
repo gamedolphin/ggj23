@@ -316,6 +316,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6223684658301783008, guid: 231ae0877bd5748d18685671ff08a357, type: 3}
+      propertyPath: seed
+      value: 43
+      objectReference: {fileID: 0}
     - target: {fileID: 6223684658301783014, guid: 231ae0877bd5748d18685671ff08a357, type: 3}
       propertyPath: m_Name
       value: SolarSystem
@@ -363,6 +367,14 @@ PrefabInstance:
     - target: {fileID: 6223684658301783015, guid: 231ae0877bd5748d18685671ff08a357, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906391021044827695, guid: 231ae0877bd5748d18685671ff08a357, type: 3}
+      propertyPath: m_Size.x
+      value: 36.047916
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906391021044827695, guid: 231ae0877bd5748d18685671ff08a357, type: 3}
+      propertyPath: m_Size.y
+      value: 36.047916
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 231ae0877bd5748d18685671ff08a357, type: 3}

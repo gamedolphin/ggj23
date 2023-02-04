@@ -1,5 +1,5 @@
 using UnityEngine;
-using Unity.Mathematics;
+using System.Collections.Generic;
 using NaughtyAttributes;
 
 [RequireComponent(typeof(BoxCollider))]
@@ -27,6 +27,11 @@ public class SolarSystem : MonoBehaviour
     [SerializeField] private int maxPlanets = 4;
     [SerializeField] private float minPlanetScale = 1;
     [SerializeField] private float maxPlanetScale = 2;
+    [SerializeField] private int minPlanetItems = 1;
+    [SerializeField] private int maxPlanetItems = 3;
+
+    [Header("Shop Details")]
+    [SerializeField] private ItemInfo[] items;
 
     [Button("Randomize")]
     private void Generate()
@@ -99,7 +104,20 @@ public class SolarSystem : MonoBehaviour
                 lit.LightSource = new Vector2(0.5f, 0.5f);
             }
 
-            radius += planet.minDistance + (float)scale; ;
+            planet.name = Names.GetRandomName(rng);
+
+            radius += planet.minDistance + (float)scale;
+
+            var itemCount = rng.Next(minPlanetItems, maxPlanetItems + 1);
+            var itemList = new List<ItemInfo>();
+
+            for (int j = 0; j < itemCount; j++)
+            {
+                var info = items[rng.Next(0, items.Length)];
+                itemList.Add(info);
+
+                planet.infos = itemList;
+            }
         }
 
         for (int i = 0; i < portalCount; i++)
@@ -147,6 +165,7 @@ public class SolarSystem : MonoBehaviour
         box.center = new Vector3(4, 4, 0);
     }
 
+    [Button("Reset")]
     private void Reset()
     {
         while (transform.childCount > 0)

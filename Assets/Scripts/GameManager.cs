@@ -10,6 +10,8 @@ public class SaveData
 
 public class GameManager : MonoBehaviour
 {
+    public static Transform player;
+
     [SerializeField] private string overrideKey;
 
     [SerializeField] private TMPro.TextMeshProUGUI nameStr;
@@ -99,6 +101,8 @@ public class GameManager : MonoBehaviour
         cam.GetComponent<CinemachineConfiner>().InvalidatePathCache();
 
         welcomeScreen.SetActive(false);
+
+        GameManager.player = player.transform;
     }
 
     private void SetName()

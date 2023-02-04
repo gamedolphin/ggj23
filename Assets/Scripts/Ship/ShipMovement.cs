@@ -30,7 +30,7 @@ public class ShipMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire2"))
         {
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = transform.position.z - mainCamera.transform.position.z;

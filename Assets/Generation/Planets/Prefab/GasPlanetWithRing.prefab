@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4670276464227082258}
   - component: {fileID: 4670276464227082259}
   - component: {fileID: 5606370149894672581}
+  - component: {fileID: 1065044148924238580}
   m_Layer: 0
   m_Name: GasPlanetWithRing
   m_TagString: Untagged
@@ -59,6 +60,7 @@ MonoBehaviour:
   ColorDark3: {r: 0.13333334, g: 0.1254902, b: 0.20392157, a: 1}
   GasPlanet: {fileID: 4670276464357334974}
   Ring: {fileID: 4670276464409284364}
+  lightSource: {x: 0, y: 0, z: 0}
 --- !u!114 &5606370149894672581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +74,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDistance: 1.5
+  nameTag: {fileID: 7640760098084306401, guid: 073c7fb9c063b7196a08dcf3eaeab7a7, type: 3}
+  itemPrefab: {fileID: 711164789486740631, guid: aaa1b9efe0a4c273485f7fd612336c79, type: 3}
+  infos: []
+--- !u!61 &1065044148924238580
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4670276464227082256}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &4670276464357334974
 GameObject:
   m_ObjectHideFlags: 0

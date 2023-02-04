@@ -146,6 +146,7 @@ MonoBehaviour:
   StarBackground: {fileID: 8861491641887308220}
   Star: {fileID: 8861491642742707774}
   StarFlares: {fileID: 8861491641451486715}
+  lightSource: {x: 0, y: 0, z: 0}
 --- !u!114 &2241659212415939998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +160,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDistance: 2
+  nameTag: {fileID: 7640760098084306401, guid: 073c7fb9c063b7196a08dcf3eaeab7a7, type: 3}
+  itemPrefab: {fileID: 711164789486740631, guid: aaa1b9efe0a4c273485f7fd612336c79, type: 3}
+  infos: []
 --- !u!1 &8861491641887308220
 GameObject:
   m_ObjectHideFlags: 0

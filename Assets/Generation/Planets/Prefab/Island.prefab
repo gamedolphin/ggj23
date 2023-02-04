@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 3076310957778996786}
   - component: {fileID: 3076310957778996787}
   - component: {fileID: 1348887192435254748}
+  - component: {fileID: 3182177697756752877}
   m_Layer: 0
   m_Name: Island
   m_TagString: Untagged
@@ -150,6 +151,7 @@ MonoBehaviour:
   Water: {fileID: 3076310956752051046}
   Land: {fileID: 3076310958005517554}
   Cloud: {fileID: 3076310958192128481}
+  lightSource: {x: 0, y: 0, z: 0}
 --- !u!114 &1348887192435254748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +165,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDistance: 1
+  nameTag: {fileID: 7640760098084306401, guid: 073c7fb9c063b7196a08dcf3eaeab7a7, type: 3}
+  itemPrefab: {fileID: 711164789486740631, guid: aaa1b9efe0a4c273485f7fd612336c79, type: 3}
+  infos: []
+--- !u!61 &3182177697756752877
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076310957778996788}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &3076310958005517554
 GameObject:
   m_ObjectHideFlags: 0

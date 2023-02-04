@@ -8,6 +8,8 @@ public static class Names
     public static List<string> firstNames = new List<string>();
     public static List<string> lastNames = new List<string>();
 
+    public static List<string> planetNames = new List<string>();
+
     public static void Initialize()
     {
         if (ready)
@@ -25,7 +27,19 @@ public static class Names
         fLines = fs.Split('\n');
         lastNames = new List<string>(fLines);
 
+        var planetAsset = Resources.Load("planetnames") as TextAsset;
+        fs = planetAsset.text;
+        fLines = fs.Split('\n');
+        planetNames = new List<string>(fLines);
+
         ready = true;
+    }
+
+    public static string GetRandomPlanetName(System.Random rng)
+    {
+        Initialize();
+
+        return planetNames[rng.Next(0, planetNames.Count)].Trim();
     }
 
     public static string GetRandomName(System.Random rng)

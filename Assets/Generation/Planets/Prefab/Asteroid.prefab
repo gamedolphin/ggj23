@@ -137,6 +137,7 @@ MonoBehaviour:
   Color1: {r: 0.6392157, g: 0.654902, b: 0.7607843, a: 1}
   Color2: {r: 0.29803923, g: 0.40784314, b: 0.52156866, a: 1}
   Color3: {r: 0.22745098, g: 0.24705882, b: 0.36862746, a: 1}
+  lightSource: {x: 0, y: 0, z: 0}
   AsteroidSprite: {fileID: 227750754737796273}
 --- !u!114 &3485942533672823739
 MonoBehaviour:
@@ -151,3 +152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDistance: 0.5
+  nameTag: {fileID: 7640760098084306401, guid: 073c7fb9c063b7196a08dcf3eaeab7a7, type: 3}
+  itemPrefab: {fileID: 711164789486740631, guid: aaa1b9efe0a4c273485f7fd612336c79, type: 3}
+  infos: []

@@ -17,11 +17,6 @@ public class ShopItem : MonoBehaviour
 
     private Transform child;
 
-    private void Start()
-    {
-        Setup(info);
-    }
-
     public void Setup(ItemInfo info)
     {
         if (child != null)
@@ -31,12 +26,26 @@ public class ShopItem : MonoBehaviour
 
         var spr = Instantiate(itemPrefab);
         spr.info = info;
+        spr.attachedTo = transform;
 
         GetComponent<SpringJoint2D>().connectedBody = spr.GetComponent<Rigidbody2D>();
 
         child = spr.transform;
 
         this.info = info;
+    }
+
+    private void OnEnable()
+    {
+        Setup(info);
+    }
+
+    private void OnDisable()
+    {
+        if (child != null)
+        {
+            DestroyImmediate(child.gameObject);
+        }
     }
 
     private void OnDestroy()

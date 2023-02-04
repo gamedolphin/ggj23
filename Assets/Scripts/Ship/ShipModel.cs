@@ -20,6 +20,8 @@ public class ShipModel : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI nameText;
 
+    private Transform textParent;
+
     [Button("Randomize")]
     private void Randomize()
     {
@@ -31,6 +33,16 @@ public class ShipModel : MonoBehaviour
     {
         playerName = name;
         nameText.text = name;
+    }
+
+    private void Awake()
+    {
+        textParent = nameText.transform.parent;
+    }
+
+    private void LateUpdate()
+    {
+        textParent.rotation = Quaternion.Inverse(transform.rotation);
     }
 
     [Button("Setup")]

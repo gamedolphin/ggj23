@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1149010310441823716}
   - component: {fileID: 1149010310441823719}
   - component: {fileID: 6910660913208215848}
+  - component: {fileID: 1281689696855968008}
   m_Layer: 0
   m_Name: LavaWorld
   m_TagString: Untagged
@@ -63,6 +64,7 @@ MonoBehaviour:
   PlanetUnder: {fileID: 1149010311077535569}
   Craters: {fileID: 1149010310551522637}
   LavaRivers: {fileID: 1149010310488568397}
+  lightSource: {x: 0, y: 0, z: 0}
 --- !u!114 &6910660913208215848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +78,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDistance: 1
+  nameTag: {fileID: 7640760098084306401, guid: 073c7fb9c063b7196a08dcf3eaeab7a7, type: 3}
+  itemPrefab: {fileID: 711164789486740631, guid: aaa1b9efe0a4c273485f7fd612336c79, type: 3}
+  infos: []
+--- !u!61 &1281689696855968008
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149010310441823718}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1149010310488568397
 GameObject:
   m_ObjectHideFlags: 0
