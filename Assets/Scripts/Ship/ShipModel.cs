@@ -1,11 +1,12 @@
 using System;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using NaughtyAttributes;
 
 public class ShipModel : MonoBehaviour
 {
-    [SerializeField] private int seed;
+    [SerializeField] public int seed;
+    [SerializeField] public string playerName;
 
     [SerializeField] private Sprite[] wing;
     [SerializeField] private Sprite[] top;
@@ -17,6 +18,8 @@ public class ShipModel : MonoBehaviour
     [SerializeField] private SpriteRenderer engineSprite;
     [SerializeField] private SpriteRenderer weaponSprite;
 
+    [SerializeField] private TextMeshProUGUI nameText;
+
     [Button("Randomize")]
     private void Randomize()
     {
@@ -24,8 +27,14 @@ public class ShipModel : MonoBehaviour
         Setup();
     }
 
+    public void SetName(string name)
+    {
+        playerName = name;
+        nameText.text = name;
+    }
+
     [Button("Setup")]
-    private void Setup()
+    public void Setup()
     {
         var rng = new System.Random(seed);
         engineSprite.sprite = engine[rng.Next(0, engine.Length)];

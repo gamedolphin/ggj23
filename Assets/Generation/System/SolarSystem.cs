@@ -2,12 +2,17 @@ using UnityEngine;
 using Unity.Mathematics;
 using NaughtyAttributes;
 
+[RequireComponent(typeof(BoxCollider))]
 public class SolarSystem : MonoBehaviour
 {
-    [SerializeField] private int seed;
+    [SerializeField] public int seed;
 
     [Header("Background")]
     [SerializeField] private Background bgPrefab;
+
+    [Header("Portal")]
+    [SerializeField] private Portal portalPrefab;
+    [SerializeField] private int portalCount;
 
     [Header("Stars")]
     [SerializeField] private Celestial[] starPrefabs;
@@ -23,7 +28,6 @@ public class SolarSystem : MonoBehaviour
     [SerializeField] private float minPlanetScale = 1;
     [SerializeField] private float maxPlanetScale = 2;
 
-
     [Button("Randomize")]
     private void Generate()
     {
@@ -32,7 +36,7 @@ public class SolarSystem : MonoBehaviour
     }
 
     [Button("Setup")]
-    private void Setup()
+    public void Setup()
     {
         Reset();
 
@@ -98,6 +102,19 @@ public class SolarSystem : MonoBehaviour
             radius += planet.minDistance + (float)scale; ;
         }
 
+        for (int i = 0; i < portalCount; i++)
+        {
+            var portal = Instantiate(portalPrefab);
+            var pos = RandomOnCircle(radius, rng);
+
+            portal.transform.position = pos;
+
+            portal.transform.SetParent(transform, true);
+
+            var angle = 360 * (float)rng.NextDouble();
+            portal.transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+
         UpdateBackground(sp, radius);
     }
 
@@ -124,6 +141,10 @@ public class SolarSystem : MonoBehaviour
     private void UpdateBackground(Background sp, float radius)
     {
         sp.Setup(seed, radius);
+
+        var box = GetComponent<BoxCollider>();
+        box.size = new Vector3(radius * 4, radius * 4, 10);
+        box.center = new Vector3(4, 4, 0);
     }
 
     private void Reset()

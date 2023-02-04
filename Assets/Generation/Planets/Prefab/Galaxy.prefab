@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 1293641303500316500}
   - component: {fileID: 1293641303500316501}
   - component: {fileID: 7477976180867812132}
+  - component: {fileID: -7628088803396355899}
   m_Layer: 0
   m_Name: Galaxy
   m_TagString: Untagged
@@ -111,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 1293641303500316499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.43, y: 0.17, z: -4.883364}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1293641302942146175}
@@ -154,3 +155,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDistance: 0
+--- !u!114 &-7628088803396355899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293641303500316499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ecc53ec6a8b969e9b3639aea4c1d75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

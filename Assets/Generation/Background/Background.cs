@@ -8,7 +8,7 @@ public class Background : MonoBehaviour
     [SerializeField] private SpriteRenderer nebulae;
     [SerializeField] private Star starPrefab;
 
-    private List<Transform> starChildren = new List<Transform>();
+    private List<Transform> starChild = new List<Transform>();
 
     public void Setup(int seed, float radius)
     {
