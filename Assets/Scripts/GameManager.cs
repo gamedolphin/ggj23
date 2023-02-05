@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using Cinemachine;
+using NaughtyAttributes;
 
 [System.Serializable]
 public class SaveData
@@ -19,10 +20,13 @@ public class SaveData
     }
 }
 
+[RequireComponent(typeof(Network))]
 public class GameManager : MonoBehaviour
 {
     public static ShipModel player;
     public ShipModel Player;
+
+    private Network network;
 
     [SerializeField] private string overrideKey;
 
@@ -109,6 +113,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        network = GetComponent<Network>();
+
         Cursor.SetCursor(cursor, Vector3.zero, CursorMode.Auto);
 
         system.data = data;
@@ -117,8 +123,15 @@ public class GameManager : MonoBehaviour
         GoHome();
     }
 
-    public void GoToNewSystem()
+    [Button("GO TO NEW SYSTEM")]
+    public async void GoToNewSystem()
     {
+        var ready = await network.JoinRandomRoom();
+        if (ready == 2)
+        {
+            return;
+        }
+
         system.seed = Random.Range(0, 1000);
         system.isHome = false;
         system.portalCount = 2;
