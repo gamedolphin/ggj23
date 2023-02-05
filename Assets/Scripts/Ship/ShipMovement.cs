@@ -14,6 +14,7 @@ public class ShipMovement : MonoBehaviour
 
     private const float minDistance = 1.0f;
 
+    [SerializeField] private Transform model;
     [SerializeField] private Transform clickEffect;
     [SerializeField] private Transform crosshair;
 
@@ -84,7 +85,7 @@ public class ShipMovement : MonoBehaviour
 
         var desired = diff.normalized;
 
-        transform.up = Vector3.RotateTowards(transform.up, desired, rotateSpeed * dt, 0.0f);
+        model.up = Vector3.RotateTowards(model.up, desired, rotateSpeed * dt, 0.0f);
 
         var maxSpeed = moveSpeed;
 
@@ -93,6 +94,6 @@ public class ShipMovement : MonoBehaviour
             maxSpeed = math.remap(0, arriveDistance, 0, moveSpeed, distance);
         }
 
-        transform.position += transform.up.normalized * maxSpeed * dt;
+        transform.position += model.up.normalized * maxSpeed * dt;
     }
 }

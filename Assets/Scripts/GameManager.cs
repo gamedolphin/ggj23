@@ -1,35 +1,47 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using Cinemachine;
 
 [System.Serializable]
 public class SaveData
 {
+    public string Key;
     public int Seed;
+    public List<int> ItemIndexes;
+
+    public void Save()
+    {
+        var str = JsonUtility.ToJson(this);
+        PlayerPrefs.SetString(Key, str);
+        PlayerPrefs.Save();
+    }
 }
 
 public class GameManager : MonoBehaviour
 {
-    public static Transform player;
+    public static ShipModel player;
+    public ShipModel Player;
 
     [SerializeField] private string overrideKey;
 
     [SerializeField] private TMPro.TextMeshProUGUI nameStr;
 
-    [SerializeField] private SolarSystem system;
+    [SerializeField] public SolarSystem system;
 
     [SerializeField] private Texture2D cursor;
 
     [SerializeField] private ShipModel ship;
 
     [SerializeField] private Button startButton;
+    [SerializeField] private Button homeButton;
     [SerializeField] private GameObject welcomeScreen;
     [SerializeField] private Transform followCam;
 
-    private const string saveKey = "homeward";
+    private const string saveKey = "homewardbound";
 
     private System.Random rng;
-    private SaveData data;
+    [SerializeField] private SaveData data;
     private bool started = false;
     private string playerName = "";
 
@@ -45,7 +57,9 @@ public class GameManager : MonoBehaviour
             var seed = Random.Range(0, 10000);
             var data = new SaveData
             {
+                Key = key,
                 Seed = seed,
+                ItemIndexes = new List<int>(),
             };
 
             var str = JsonUtility.ToJson(data);
@@ -54,6 +68,13 @@ public class GameManager : MonoBehaviour
 
             return data;
         }
+    }
+
+    public void Save(string key)
+    {
+        var str = JsonUtility.ToJson(data);
+        PlayerPrefs.SetString(key, str);
+        PlayerPrefs.Save();
     }
 
     private void Awake()
@@ -73,17 +94,50 @@ public class GameManager : MonoBehaviour
         SetName();
     }
 
+    private void OnApplicationQuit()
+    {
+        var key = saveKey;
+        if (overrideKey != "")
+        {
+            key = overrideKey;
+        }
+
+        Save(key);
+    }
+
     private void Start()
     {
         Cursor.SetCursor(cursor, Vector3.zero, CursorMode.Auto);
 
-        system.seed = data.Seed;
-        system.Setup();
+        system.data = data;
+        system.manager = this;
 
-        startButton.onClick.AddListener(OnStart);
+        GoHome();
     }
 
-    private void OnStart()
+    public void GoToNewSystem()
+    {
+        system.seed = Random.Range(0, 1000);
+        system.isHome = false;
+        system.Setup();
+        ResetCam();
+
+        homeButton.gameObject.SetActive(true);
+
+        Debug.Log($"Welcome to new system!");
+    }
+
+    public void GoHome()
+    {
+        system.seed = data.Seed;
+        system.isHome = true;
+        system.Setup();
+        ResetCam();
+
+        homeButton.gameObject.SetActive(false);
+    }
+
+    public void OnStart()
     {
         if (started)
         {
@@ -98,11 +152,17 @@ public class GameManager : MonoBehaviour
         var cam = followCam.GetComponent<CinemachineVirtualCamera>();
         cam.Follow = player.transform;
         cam.LookAt = player.transform;
-        cam.GetComponent<CinemachineConfiner>().InvalidatePathCache();
 
         welcomeScreen.SetActive(false);
 
-        GameManager.player = player.transform;
+        Player = player;
+        GameManager.player = player;
+    }
+
+    private void ResetCam()
+    {
+        var cam = followCam.GetComponent<CinemachineVirtualCamera>();
+        cam.GetComponent<CinemachineConfiner>().InvalidatePathCache();
     }
 
     private void SetName()

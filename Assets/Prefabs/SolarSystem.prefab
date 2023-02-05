@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e845745091698d1f490a5474faa1d151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHome: 0
   seed: 916
   bgPrefab: {fileID: 1153046397214006561, guid: b4e46cf4bfd0f5cffbc4a1d472beb8d6, type: 3}
   portalPrefab: {fileID: -7628088803396355899, guid: cf700877d2834364183c60110431c758, type: 3}
@@ -65,53 +66,17 @@ MonoBehaviour:
   - {fileID: 1348887192435254748, guid: 1177e26b288c037439a85070ea091fd0, type: 3}
   - {fileID: 6910660913208215848, guid: 2486fc736da8cab42ab7e0809b1e840e, type: 3}
   - {fileID: 3842498059499493149, guid: 2ff7d7262fcfe7e449c4063f94c9e980, type: 3}
-  minPlanets: 1
+  minPlanets: 2
   maxPlanets: 4
   minPlanetScale: 1
   maxPlanetScale: 2
   minPlanetItems: 1
   maxPlanetItems: 3
-  items:
-  - name: Chips
-    sprite: {fileID: 21300000, guid: 9982be2375b3fca3e95b7dd4e7326f5e, type: 3}
-  - name: Banana
-    sprite: {fileID: 21300000, guid: cbd86ea8761e6c041b549a7b32c11150, type: 3}
-  - name: Cabbage
-    sprite: {fileID: 21300000, guid: d4cb7dfccf00cb2eba1fc0d093a3d0e8, type: 3}
-  - name: Detergen
-    sprite: {fileID: 21300000, guid: 97b81fb9b83cde56a93af0f03147b84c, type: 3}
-  - name: Eggs
-    sprite: {fileID: 21300000, guid: 51d4334228d224bc2ae4b3db8e22b48d, type: 3}
-  - name: Green Apple
-    sprite: {fileID: 21300000, guid: c534642b5d62719febf30b41f2968b47, type: 3}
-  - name: Jam
-    sprite: {fileID: 21300000, guid: 38b58cd78280aba4bb90e65e859e16f7, type: 3}
-  - name: Ketchup
-    sprite: {fileID: 21300000, guid: 471ba404d1a0b2ad2b3ed9f40b8e6cf3, type: 3}
-  - name: Marshmallows
-    sprite: {fileID: 21300000, guid: e1d42a202d3ccf6d0a8ff27c1c042782, type: 3}
-  - name: Milk
-    sprite: {fileID: 21300000, guid: a1bce6f6664673eeab72cd15aa9bebe2, type: 3}
-  - name: Rubber Duck
-    sprite: {fileID: 21300000, guid: e428466aa2c2736cca5fcfa5e8aabd8f, type: 3}
-  - name: Scissors
-    sprite: {fileID: 21300000, guid: dc81ab6b4a88219469771e3d6166d6f1, type: 3}
-  - name: Soap
-    sprite: {fileID: 21300000, guid: a6c93750ad9e555189dd63b92890e800, type: 3}
-  - name: Strawberries
-    sprite: {fileID: 21300000, guid: a388cb7336775db68a6f271fe0640f28, type: 3}
-  - name: Toilet Paper
-    sprite: {fileID: 21300000, guid: b4124ddb6aa7300fc9843e9a7070ed2f, type: 3}
-  - name: Tuna
-    sprite: {fileID: 21300000, guid: 61fc0f0875f5841ceb62905c3d9f603b, type: 3}
-  - name: Watermelon
-    sprite: {fileID: 21300000, guid: b368ab9d5804865f5a5beb63ba07a2f2, type: 3}
-  - name: Wine
-    sprite: {fileID: 21300000, guid: 21a015e8cdfcdc459a16e9d969711547, type: 3}
-  - name: Honey
-    sprite: {fileID: 21300000, guid: fc1ee9d67d7a5c54ebcfdea20562c95a, type: 3}
-  - name: Toothpaste
-    sprite: {fileID: 21300000, guid: 925af36b6b0e3e42296f388ff6d0033b, type: 3}
+  items: {fileID: 0}
+  data:
+    Key: 
+    Seed: 0
+    itemIndexes: 
 --- !u!65 &6906391021044827695
 BoxCollider:
   m_ObjectHideFlags: 0

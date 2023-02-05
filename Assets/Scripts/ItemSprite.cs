@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -7,7 +5,9 @@ public class ItemSprite : MonoBehaviour
 {
     public ItemInfo info;
 
-    public Transform attachedTo;
+    public ShopItem item;
+
+    public IItemHolder attachedTo;
 
     [SerializeField] private TMPro.TextMeshProUGUI nameText;
 
@@ -21,7 +21,22 @@ public class ItemSprite : MonoBehaviour
     {
         if (GameManager.player != null && attachedTo != null)
         {
-            attachedTo.SetParent(GameManager.player);
+            if (Vector3.Distance(GameManager.player.transform.position, transform.position) > 2f)
+            {
+                return;
+            }
+
+            try
+            {
+                Debug.Log($"transferring {info.name} to player");
+                attachedTo.GiveItem(item);
+                GameManager.player.TakeItem(item);
+                attachedTo = GameManager.player;
+            }
+            catch (System.Exception ex)
+            {
+                Debug.Log($"Unable to transfer: {ex}");
+            }
         }
     }
 }

@@ -1,9 +1,9 @@
-using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using NaughtyAttributes;
 
-public class ShipModel : MonoBehaviour
+public class ShipModel : MonoBehaviour, IItemHolder
 {
     [SerializeField] public int seed;
     [SerializeField] public string playerName;
@@ -21,6 +21,8 @@ public class ShipModel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameText;
 
     private Transform textParent;
+
+    private List<ShopItem> carrying = new List<ShopItem>();
 
     [Button("Randomize")]
     private void Randomize()
@@ -43,6 +45,33 @@ public class ShipModel : MonoBehaviour
     private void LateUpdate()
     {
         textParent.rotation = Quaternion.Inverse(transform.rotation);
+    }
+
+    public void GiveItem(ShopItem item)
+    {
+        // add auth transfer things here;
+    }
+
+    public void TransferToPlanet(Celestial planet)
+    {
+        foreach (var item in carrying)
+        {
+            planet.TakeItem(item);
+        }
+
+        carrying.Clear();
+    }
+
+    public void TakeItem(ShopItem item)
+    {
+        if (carrying.Contains(item))
+        {
+            throw new System.Exception("already have this");
+        }
+
+        item.transform.SetParent(transform);
+        carrying.Add(item);
+        item.holder = this;
     }
 
     [Button("Setup")]

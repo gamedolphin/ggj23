@@ -5,6 +5,9 @@ using NaughtyAttributes;
 [RequireComponent(typeof(BoxCollider))]
 public class SolarSystem : MonoBehaviour
 {
+    [HideInInspector] public GameManager manager;
+
+    [SerializeField] public bool isHome;
     [SerializeField] public int seed;
 
     [Header("Background")]
@@ -31,7 +34,9 @@ public class SolarSystem : MonoBehaviour
     [SerializeField] private int maxPlanetItems = 3;
 
     [Header("Shop Details")]
-    [SerializeField] private ItemInfo[] items;
+    [SerializeField] private ItemConfig items;
+
+    [HideInInspector] public SaveData data;
 
     [Button("Randomize")]
     private void Generate()
@@ -65,10 +70,12 @@ public class SolarSystem : MonoBehaviour
 
             var scale = minStarScale + rng.NextDouble() * maxStarScale;
 
-            star.transform.localScale = Vector3.one * (float)scale;
+            star.name = Names.GetRandomPlanetName(rng);
 
             var angle = 360 * (float)rng.NextDouble();
-            star.transform.rotation = Quaternion.Euler(0, 0, angle);
+            star.manager = manager;
+            star.spawnAngle = angle;
+            star.spawnScale = (float)scale;
 
             radius += star.minDistance * (float)scale;
         }
@@ -81,16 +88,21 @@ public class SolarSystem : MonoBehaviour
             var planet = Instantiate(prefab);
             var pos = RandomOnCircle(radius, rng);
 
+            planet.manager = manager;
             planet.transform.position = pos;
 
             planet.transform.SetParent(transform, true);
 
             var scale = minPlanetScale + rng.NextDouble() * maxPlanetScale;
 
-            planet.transform.localScale = Vector3.one * (float)scale;
-
             var angle = 360 * (float)rng.NextDouble();
-            planet.transform.rotation = Quaternion.Euler(0, 0, angle);
+            planet.spawnAngle = angle;
+            planet.spawnScale = (float)scale;
+
+            if (isHome && i == 0)
+            {
+                planet.isHome = true;
+            }
 
             var pl = planet.GetComponent<IPlanet>();
             if (pl != null)
@@ -104,20 +116,44 @@ public class SolarSystem : MonoBehaviour
                 lit.LightSource = new Vector2(0.5f, 0.5f);
             }
 
-            planet.name = Names.GetRandomName(rng);
+            planet.data = data;
+            planet.name = Names.GetRandomPlanetName(rng);
 
             radius += planet.minDistance + (float)scale;
 
-            var itemCount = rng.Next(minPlanetItems, maxPlanetItems + 1);
-            var itemList = new List<ItemInfo>();
+            var itemList = new List<PlanetItem>();
 
-            for (int j = 0; j < itemCount; j++)
+            if (isHome && i == 0)
             {
-                var info = items[rng.Next(0, items.Length)];
-                itemList.Add(info);
-
-                planet.infos = itemList;
+                foreach (var index in data.ItemIndexes)
+                {
+                    var info = items.items[index];
+                    itemList.Add(new PlanetItem
+                    {
+                        Index = index,
+                        name = info.name,
+                        sprite = info.sprite,
+                    });
+                }
             }
+            else if (!isHome)
+            {
+                var itemCount = rng.Next(minPlanetItems, maxPlanetItems + 1);
+
+                for (int j = 0; j < itemCount; j++)
+                {
+                    var index = rng.Next(0, items.items.Length);
+                    var info = items.items[index];
+                    itemList.Add(new PlanetItem
+                    {
+                        Index = index,
+                        name = info.name,
+                        sprite = info.sprite,
+                    });
+                }
+            }
+
+            planet.infos = itemList;
         }
 
         for (int i = 0; i < portalCount; i++)
@@ -125,12 +161,14 @@ public class SolarSystem : MonoBehaviour
             var portal = Instantiate(portalPrefab);
             var pos = RandomOnCircle(radius, rng);
 
+            portal.manager = manager;
             portal.transform.position = pos;
 
             portal.transform.SetParent(transform, true);
 
             var angle = 360 * (float)rng.NextDouble();
-            portal.transform.rotation = Quaternion.Euler(0, 0, angle);
+            portal.spawnAngle = angle;
+            portal.name = Names.GetRandomPlanetName(rng);
         }
 
         UpdateBackground(sp, radius);
@@ -151,7 +189,8 @@ public class SolarSystem : MonoBehaviour
     private Background SetupBackground()
     {
         var bg = Instantiate(bgPrefab);
-        bg.transform.SetParent(transform);
+        bg.transform.SetParent(transform, false);
+        bg.transform.position = Vector3.zero;
 
         return bg;
     }
@@ -161,8 +200,8 @@ public class SolarSystem : MonoBehaviour
         sp.Setup(seed, radius);
 
         var box = GetComponent<BoxCollider>();
-        box.size = new Vector3(radius * 4, radius * 4, 10);
-        box.center = new Vector3(4, 4, 0);
+        box.size = new Vector3(radius * 4, radius * 4, 40);
+        box.center = Vector3.zero;
     }
 
     [Button("Reset")]

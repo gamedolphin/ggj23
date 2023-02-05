@@ -9,15 +9,23 @@ public class ItemInfo
     public Sprite sprite;
 }
 
+public interface IItemHolder
+{
+    void GiveItem(ShopItem item);
+    void TakeItem(ShopItem item);
+}
+
 [RequireComponent(typeof(SpringJoint2D))]
 public class ShopItem : MonoBehaviour
 {
-    public ItemInfo info;
+    public PlanetItem info;
     public ItemSprite itemPrefab;
 
     private Transform child;
 
-    public void Setup(ItemInfo info)
+    public IItemHolder holder;
+
+    public void Setup(PlanetItem info)
     {
         if (child != null)
         {
@@ -26,26 +34,21 @@ public class ShopItem : MonoBehaviour
 
         var spr = Instantiate(itemPrefab);
         spr.info = info;
-        spr.attachedTo = transform;
+        spr.attachedTo = holder;
+        spr.item = this;
 
         GetComponent<SpringJoint2D>().connectedBody = spr.GetComponent<Rigidbody2D>();
 
         child = spr.transform;
 
         this.info = info;
+
+        Debug.Log($"Item held by {holder}");
     }
 
-    private void OnEnable()
+    private void Start()
     {
         Setup(info);
-    }
-
-    private void OnDisable()
-    {
-        if (child != null)
-        {
-            DestroyImmediate(child.gameObject);
-        }
     }
 
     private void OnDestroy()

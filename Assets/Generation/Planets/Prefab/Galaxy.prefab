@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293641302942146174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.16, y: -2.71, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1293641303500316500}
@@ -94,8 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1293641303500316500}
   - component: {fileID: 1293641303500316501}
-  - component: {fileID: 7477976180867812132}
   - component: {fileID: -7628088803396355899}
+  - component: {fileID: 9026233770065671767}
   m_Layer: 0
   m_Name: Galaxy
   m_TagString: Untagged
@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 1293641303500316499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.43, y: 0.17, z: -4.883364}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1293641302942146175}
@@ -142,22 +142,6 @@ MonoBehaviour:
   Color5: {r: 0.19607843, g: 0.24313726, b: 0.30980393, a: 1}
   Color6: {r: 0.19607843, g: 0.16078432, b: 0.2784314, a: 1}
   Sprite: {fileID: 1293641302942146174}
---- !u!114 &7477976180867812132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293641303500316499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d9d6e6e7bc242a1e92e39dd8e10e1f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minDistance: 0
-  nameTag: {fileID: 7640760098084306401, guid: 073c7fb9c063b7196a08dcf3eaeab7a7, type: 3}
-  itemPrefab: {fileID: 711164789486740631, guid: aaa1b9efe0a4c273485f7fd612336c79, type: 3}
-  infos: []
 --- !u!114 &-7628088803396355899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,3 +154,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ecc53ec6a8b969e9b3639aea4c1d75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameTag: {fileID: 7640760098084306401, guid: 073c7fb9c063b7196a08dcf3eaeab7a7, type: 3}
+  manager: {fileID: 0}
+  spawnAngle: 0
+--- !u!61 &9026233770065671767
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293641303500316499}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
