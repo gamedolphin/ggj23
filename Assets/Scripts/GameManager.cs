@@ -8,6 +8,7 @@ public class SaveData
 {
     public string Key;
     public int Seed;
+    public int LastNeed;
     public List<int> ItemIndexes;
 
     public void Save()
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
             {
                 Key = key,
                 Seed = seed,
+                LastNeed = -1,
                 ItemIndexes = new List<int>(),
             };
 
@@ -124,6 +126,8 @@ public class GameManager : MonoBehaviour
 
         homeButton.gameObject.SetActive(true);
 
+        player.transform.position = Vector3.zero;
+
         Debug.Log($"Welcome to new system!");
     }
 
@@ -135,6 +139,8 @@ public class GameManager : MonoBehaviour
         ResetCam();
 
         homeButton.gameObject.SetActive(false);
+
+        player.transform.position = Vector3.zero;
     }
 
     public void OnStart()

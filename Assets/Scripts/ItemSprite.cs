@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(AudioSource))]
 public class ItemSprite : MonoBehaviour
 {
     public ItemInfo info;
@@ -11,8 +12,11 @@ public class ItemSprite : MonoBehaviour
 
     [SerializeField] private TMPro.TextMeshProUGUI nameText;
 
+    private AudioSource audioSfx;
+
     private void Start()
     {
+        audioSfx = GetComponent<AudioSource>();
         GetComponent<SpriteRenderer>().sprite = info.sprite;
         nameText.text = info.name;
     }
@@ -32,6 +36,7 @@ public class ItemSprite : MonoBehaviour
                 attachedTo.GiveItem(item);
                 GameManager.player.TakeItem(item);
                 attachedTo = GameManager.player;
+                audioSfx.Play();
             }
             catch (System.Exception ex)
             {

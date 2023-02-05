@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e845745091698d1f490a5474faa1d151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHome: 0
+  manager: {fileID: 0}
+  isHome: 1
   seed: 916
   bgPrefab: {fileID: 1153046397214006561, guid: b4e46cf4bfd0f5cffbc4a1d472beb8d6, type: 3}
   portalPrefab: {fileID: -7628088803396355899, guid: cf700877d2834364183c60110431c758, type: 3}
@@ -72,11 +73,12 @@ MonoBehaviour:
   maxPlanetScale: 2
   minPlanetItems: 1
   maxPlanetItems: 3
-  items: {fileID: 0}
+  items: {fileID: 11400000, guid: a9531bf88bea47b7f80a602cc26819ab, type: 2}
+  needPrefab: {fileID: 770300065504711569, guid: 9534642c3ba338ee4bdefbfe8a259b69, type: 3}
   data:
     Key: 
     Seed: 0
-    itemIndexes: 
+    ItemIndexes: 
 --- !u!65 &6906391021044827695
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -85,7 +87,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6223684658301783014}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 29.866888, y: 29.866888, z: 10}

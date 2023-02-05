@@ -36,6 +36,9 @@ public class SolarSystem : MonoBehaviour
     [Header("Shop Details")]
     [SerializeField] private ItemConfig items;
 
+    [Header("Planet Needs")]
+    [SerializeField] private PlanetNeeds needPrefab;
+
     [HideInInspector] public SaveData data;
 
     [Button("Randomize")]
@@ -125,6 +128,13 @@ public class SolarSystem : MonoBehaviour
 
             if (isHome && i == 0)
             {
+                var need = Instantiate(needPrefab);
+                need.items = items;
+                need.data = data;
+
+                need.transform.SetParent(planet.transform, false);
+                planet.needs = need;
+
                 foreach (var index in data.ItemIndexes)
                 {
                     var info = items.items[index];

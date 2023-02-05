@@ -69,6 +69,11 @@ public class ShipModel : MonoBehaviour, IItemHolder
             throw new System.Exception("already have this");
         }
 
+        if (carrying.Count > 3)
+        {
+            throw new System.Exception("already at max");
+        }
+
         item.transform.SetParent(transform);
         carrying.Add(item);
         item.holder = this;

@@ -11,6 +11,8 @@ public class Celestial : MonoBehaviour, IItemHolder
 {
     [HideInInspector] public GameManager manager;
 
+    [HideInInspector] public PlanetNeeds needs;
+
     public float minDistance;
 
     [SerializeField] private Transform nameTag;
@@ -57,6 +59,11 @@ public class Celestial : MonoBehaviour, IItemHolder
 
     public void GiveItem(ShopItem item)
     {
+        RemoveItem(item);
+    }
+
+    public void RemoveItem(ShopItem item)
+    {
         items.Remove(item.transform);
 
         if (isHome)
@@ -79,6 +86,12 @@ public class Celestial : MonoBehaviour, IItemHolder
             data.ItemIndexes.Add(index);
             data.Save();
         }
+
+        if (needs != null && needs.EatItem(item.info.Index))
+        {
+            RemoveItem(item);
+            Destroy(item.gameObject);
+        }
     }
 
     private void OnMouseDown()
@@ -97,15 +110,5 @@ public class Celestial : MonoBehaviour, IItemHolder
 
             manager.Player.TransferToPlanet(this);
         }
-    }
-
-    private void ToggleItems()
-    {
-        // showState = !showState;
-
-        // foreach (Transform child in items)
-        // {
-        //     child.gameObject.SetActive(showState);
-        // }
     }
 }

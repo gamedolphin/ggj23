@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Mathematics;
 
+[RequireComponent(typeof(AudioSource))]
 public class ShipMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10.0f;
@@ -13,6 +14,7 @@ public class ShipMovement : MonoBehaviour
     private Vector3 currentAcc = Vector3.zero;
 
     private const float minDistance = 1.0f;
+    private AudioSource audioSfx;
 
     [SerializeField] private Transform model;
     [SerializeField] private Transform clickEffect;
@@ -20,6 +22,7 @@ public class ShipMovement : MonoBehaviour
 
     private void Awake()
     {
+        audioSfx = GetComponent<AudioSource>();
         mainCamera = Camera.main;
         currentTarget = transform.position;
     }
@@ -44,6 +47,7 @@ public class ShipMovement : MonoBehaviour
 
     private void ShowEffect(Vector3 position)
     {
+        audioSfx.Play();
         Instantiate(clickEffect, position, Quaternion.identity);
     }
 
