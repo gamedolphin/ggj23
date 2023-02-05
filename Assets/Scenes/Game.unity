@@ -685,7 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: 10
   min: 2
-  max: 10
+  max: 20
 --- !u!1 &690543541
 GameObject:
   m_ObjectHideFlags: 3
