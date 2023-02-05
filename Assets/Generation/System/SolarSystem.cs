@@ -15,7 +15,7 @@ public class SolarSystem : MonoBehaviour
 
     [Header("Portal")]
     [SerializeField] private Portal portalPrefab;
-    [SerializeField] private int portalCount;
+    [SerializeField] public int portalCount;
 
     [Header("Stars")]
     [SerializeField] private Celestial[] starPrefabs;

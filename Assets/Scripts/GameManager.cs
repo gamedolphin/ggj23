@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
     {
         system.seed = Random.Range(0, 1000);
         system.isHome = false;
+        system.portalCount = 2;
         system.Setup();
         ResetCam();
 
@@ -135,12 +136,16 @@ public class GameManager : MonoBehaviour
     {
         system.seed = data.Seed;
         system.isHome = true;
+        system.portalCount = 1;
         system.Setup();
         ResetCam();
 
         homeButton.gameObject.SetActive(false);
 
-        player.transform.position = Vector3.zero;
+        if (Player != null)
+        {
+            Player.transform.position = Vector3.zero;
+        }
     }
 
     public void OnStart()
