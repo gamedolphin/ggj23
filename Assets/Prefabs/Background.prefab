@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1153046396107504420}
   - component: {fileID: 1153046396107504421}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1153046397214006560}
   - component: {fileID: 1153046397214006561}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stars: {fileID: 1153046396107504421}
   nebulae: {fileID: 4778160840701217611}
+  starPrefab: {fileID: 0}
 --- !u!1 &6433887507765313827
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1347089695368356555}
   - component: {fileID: 4778160840701217611}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Nebulae
   m_TagString: Untagged
   m_Icon: {fileID: 0}

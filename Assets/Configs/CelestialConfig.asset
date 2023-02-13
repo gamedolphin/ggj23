@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50f5cc254d3a92d9bb278da1332ab6b, type: 3}
+  m_Name: CelestialConfig
+  m_EditorClassIdentifier: 
+  bgPrefab: {fileID: 1153046397214006561, guid: b4e46cf4bfd0f5cffbc4a1d472beb8d6, type: 3}
+  portalPrefab: {fileID: -7628088803396355899, guid: cf700877d2834364183c60110431c758, type: 3}
+  starPrefabs:
+  - {fileID: 2536161808849519279, guid: ad21d2dbbefee834988aa45320bbb48b, type: 3}
+  - {fileID: 2241659212415939998, guid: 9d05a733450bb804b87bef0bda056fcb, type: 3}
+  planetPrefabs:
+  - {fileID: 2096304994266410444, guid: 1d105d8b7ab36fd48a762326f808a0d1, type: 3}
+  - {fileID: 6791233633456855866, guid: f09f9493955ab4d42986f8041393c810, type: 3}
+  - {fileID: 1359658958425298208, guid: af2c40ec59dd53f43a143774aae5a1e8, type: 3}
+  - {fileID: 3570520002690362249, guid: 2cd1c663f880105428a8b6c380b7d948, type: 3}
+  - {fileID: 5606370149894672581, guid: 2f168dc482daee346b7726000207831e, type: 3}
+  - {fileID: 1348887192435254748, guid: 1177e26b288c037439a85070ea091fd0, type: 3}
+  - {fileID: 6910660913208215848, guid: 2486fc736da8cab42ab7e0809b1e840e, type: 3}
+  - {fileID: 3842498059499493149, guid: 2ff7d7262fcfe7e449c4063f94c9e980, type: 3}
+  needsPrefab: {fileID: 770300065504711569, guid: 9534642c3ba338ee4bdefbfe8a259b69, type: 3}

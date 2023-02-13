@@ -2,12 +2,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using NaughtyAttributes;
+using VContainer;
 
 public class ShipModel : MonoBehaviour, IItemHolder
 {
-    [SerializeField] public int seed;
-    [SerializeField] public string playerName;
-
     [SerializeField] private Sprite[] wing;
     [SerializeField] private Sprite[] top;
     [SerializeField] private Sprite[] engine;
@@ -20,31 +18,33 @@ public class ShipModel : MonoBehaviour, IItemHolder
 
     [SerializeField] private TextMeshProUGUI nameText;
 
-    private Transform textParent;
+    [HideInInspector] public int Seed;
+
+    [HideInInspector] public Manager manager;
+
+    [Inject]
+    public void Construct(Manager manager)
+    {
+        this.manager = manager;
+    }
 
     private List<ShopItem> carrying = new List<ShopItem>();
 
     [Button("Randomize")]
     private void Randomize()
     {
-        seed = UnityEngine.Random.Range(0, 1000);
+        this.Seed = Random.Range(0, 1000);
         Setup();
     }
 
     public void SetName(string name)
     {
-        playerName = name;
         nameText.text = name;
     }
 
-    private void Awake()
+    private void Start()
     {
-        textParent = nameText.transform.parent;
-    }
-
-    private void LateUpdate()
-    {
-        textParent.rotation = Quaternion.Inverse(transform.rotation);
+        Setup();
     }
 
     public void GiveItem(ShopItem item)
@@ -82,7 +82,8 @@ public class ShipModel : MonoBehaviour, IItemHolder
     [Button("Setup")]
     public void Setup()
     {
-        var rng = new System.Random(seed);
+        var rng = new System.Random(this.Seed);
+
         engineSprite.sprite = engine[rng.Next(0, engine.Length)];
         weaponSprite.sprite = weapons[rng.Next(0, weapons.Length)];
         topSprite.sprite = top[rng.Next(0, top.Length)];

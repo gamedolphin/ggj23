@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2159064874705027028}
   - component: {fileID: 7631778847001318727}
   - component: {fileID: 168106699071901159}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 849745346841111763}
   - component: {fileID: 849745346841111764}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 849745347070318667}
   - component: {fileID: 849745347070318666}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 849745347352731236}
   - component: {fileID: 849745347352731235}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 849745347436147969}
   - component: {fileID: 849745347436147968}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Engine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,7 +481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 849745348195674969}
   - component: {fileID: 849745348195674968}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 849745348499479205}
   - component: {fileID: 4427858334639527916}
   - component: {fileID: 4647038494764903255}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -605,8 +605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ea542a71856c0d3a32188c43f7da6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 5465
-  playerName: 
   wing:
   - {fileID: 1982924170, guid: 54da937fbb33ae23f8fac0ea23680520, type: 3}
   - {fileID: 282182791, guid: 54da937fbb33ae23f8fac0ea23680520, type: 3}
@@ -719,6 +717,7 @@ MonoBehaviour:
   engineSprite: {fileID: 849745347436147968}
   weaponSprite: {fileID: 849745347352731235}
   nameText: {fileID: 168106699071901159}
+  Seed: 0
 --- !u!114 &849745348499479205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,6 +877,7 @@ MonoBehaviour:
   OnInputOwnerAssigned:
     m_PersistentCalls:
       m_Calls: []
+  coherenceSyncConfig: {fileID: -4277287713225413739, guid: 9e56cc401eb3d06359850eb7afefcede, type: 2}
   archetype:
     boundComponents:
     - component: {fileID: 849745348499479207}
@@ -921,12 +921,13 @@ MonoBehaviour:
     lodLevels:
     - distance: 0
     archetypeName: Ship_27f5579ed674f391a8bdd06c92936648
-    GeneratesArchetypeDefinition: 0
+    GeneratesArchetypeDefinition: 1
   InterpolationLocation: 1
-  bakedScriptType: Coherence.Generated.CoherenceSyncShip_id0, Assembly-CSharp
+  bakedScriptType: Coherence.Generated.CoherenceSyncShip_27f5579ed674f391a8bdd06c92936648,
+    Assembly-CSharp
   approveAuthorityTransferRequests: 1
   simulationType: 0
-  authorityTransferType: 2
+  authorityTransferType: 0
   orphanedBehavior: 0
   lifetimeType: 0
   uniquenessType: 0
@@ -937,9 +938,9 @@ MonoBehaviour:
   customBindings: []
   bindings:
   - rid: 58763524604428288
-  - rid: 58763524604428290
   - rid: 58763524604428294
   - rid: 58763524604428298
+  - rid: 58763636057309222
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -949,9 +950,6 @@ MonoBehaviour:
   onNetworkedDestruction:
     m_PersistentCalls:
       m_Calls: []
-  remoteVersionPrefabName: Ship
-  PrefabGuid: 27f5579ed674f391a8bdd06c92936648
-  selectedSynchronizedPrefabOption: 2
   usingReflection: 0
   coherenceTag: 
   componentActions:
@@ -1004,52 +1002,6 @@ MonoBehaviour:
           rid: -2
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.TransformBindings.PositionBinding,
-            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
-    - rid: 58763524604428290
-      type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 58763524604428291
-        routing: 0
-        isPredicted: 0
-        defaultInterpolationPath: 
-        guid: 8683b8e3-f12b-4b60-a3d3-96266e280529
-        archetypeData:
-          type: 1
-          minRange: -2147483648
-          maxRange: 2147483647
-          sampleRate: 20
-          floatCompression: 0
-          fields:
-          - type: 1
-            bits: 32
-            minRange: -2147483648
-            maxRange: 2147483647
-            precision: 0
-            floatCompression: 0
-          sharedBinding: {fileID: 0}
-        unityComponent: {fileID: 849745348499479206}
-        coherenceSync: {fileID: 0}
-        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
-    - rid: 58763524604428291
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: seed
-        monoAssemblyType: System.Int32, mscorlib
-        required: 0
-        enforcesLODingWhenFieldsOverriden: 1
-        valueSyncCallbackName: 
-        memberType: 4
-        parameterAssemblyTypes: []
-        ownerType:
-          assemblyQualifiedName: ShipModel, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
@@ -1149,6 +1101,52 @@ MonoBehaviour:
       type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
       data:
         component: {fileID: 849745348499479205}
+    - rid: 58763636057309222
+      type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 58763636057309223
+        routing: 0
+        isPredicted: 0
+        defaultInterpolationPath: 
+        guid: f0481380-3551-4d7c-ae01-1034950a349f
+        archetypeData:
+          type: 1
+          minRange: -2147483648
+          maxRange: 2147483647
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 1
+            bits: 32
+            minRange: -2147483648
+            maxRange: 2147483647
+            precision: 0
+            floatCompression: 0
+          sharedBinding: {fileID: 0}
+        unityComponent: {fileID: 849745348499479206}
+        coherenceSync: {fileID: 0}
+        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
+    - rid: 58763636057309223
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: Seed
+        monoAssemblyType: System.Int32, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: ShipModel, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
 --- !u!1 &1757501372708078909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,7 +1158,7 @@ GameObject:
   - component: {fileID: 2679091150024912416}
   - component: {fileID: 6446191848623497323}
   - component: {fileID: 7933719199158946270}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1241,7 +1239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8688555239120687463}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

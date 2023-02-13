@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.cysharp.unitask": {
+      "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "73d86259ce31ce7f4dfe1d028ea1c3edf96c23e4"
+    },
     "com.dbrizov.naughtyattributes": {
       "version": "https://github.com/dbrizov/NaughtyAttributes.git#upm",
       "depth": 0,
@@ -179,6 +186,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.nuget.mono-cecil": {
+      "version": "1.10.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.0.2",
       "depth": 1,
@@ -319,15 +333,23 @@
       "url": "https://packages.unity.com"
     },
     "io.coherence.sdk": {
-      "version": "0.10.8",
+      "version": "file:../../../coherence/unity",
       "depth": 0,
-      "source": "registry",
+      "source": "local",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "2.0.0",
         "com.unity.mathematics": "1.2.6",
         "com.unity.roslyn": "0.2.2-preview"
+      }
+    },
+    "jp.hadashikick.vcontainer": {
+      "version": "https://github.com/hadashiA/VContainer.git?path=VContainer/Assets/VContainer#1.12.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.mono-cecil": "1.10.1"
       },
-      "url": "https://registry.npmjs.org"
+      "hash": "9fff851582d14810565f8db3e82dba2227a091d4"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

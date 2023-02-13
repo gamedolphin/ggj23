@@ -15,6 +15,7 @@ public class ShipMovement : MonoBehaviour
 
     private const float minDistance = 1.0f;
     private AudioSource audioSfx;
+    private ShipModel shipModel;
 
     [SerializeField] private Transform model;
     [SerializeField] private Transform clickEffect;
@@ -25,6 +26,7 @@ public class ShipMovement : MonoBehaviour
         audioSfx = GetComponent<AudioSource>();
         mainCamera = Camera.main;
         currentTarget = transform.position;
+        shipModel = model.GetComponent<ShipModel>();
     }
 
     private void Start()
@@ -48,7 +50,9 @@ public class ShipMovement : MonoBehaviour
     private void ShowEffect(Vector3 position)
     {
         audioSfx.Play();
-        Instantiate(clickEffect, position, Quaternion.identity);
+        var obj = Instantiate(clickEffect);
+        obj.position = position;
+        obj.rotation = Quaternion.identity;
     }
 
 

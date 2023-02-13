@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 770300065504711662}
   - component: {fileID: 770300065504711569}
   - component: {fileID: 1696359096662388617}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlanetNeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,12 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7cb942d4cac27baebd34839dfa42adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: {fileID: 0}
-  data:
-    Key: 
-    Seed: 0
-    LastNeed: 0
-    ItemIndexes: 
   sprite: {fileID: 7030523132265026358}
   smoke: {fileID: 8867328047091117920, guid: a535de66c32195eda9eec3e0f0c3649d, type: 3}
 --- !u!82 &1696359096662388617
@@ -160,7 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7392423980365612268}
   - component: {fileID: 7030523132265026358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
