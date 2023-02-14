@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Mathematics;
+using VContainer;
 
 [RequireComponent(typeof(AudioSource))]
 public class ShipMovement : MonoBehaviour
@@ -21,6 +22,14 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] private Transform clickEffect;
     [SerializeField] private Transform crosshair;
 
+    private Manager manager;
+
+    [Inject]
+    public void Construct(Manager manager)
+    {
+        this.manager = manager;
+    }
+
     private void Awake()
     {
         audioSfx = GetComponent<AudioSource>();
@@ -36,7 +45,7 @@ public class ShipMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && manager.IsCurrent)
         {
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = transform.position.z - mainCamera.transform.position.z;

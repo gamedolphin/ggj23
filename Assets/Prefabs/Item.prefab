@@ -178,13 +178,13 @@ MonoBehaviour:
     lodLevels:
     - distance: 0
     archetypeName: Item_aaa1b9efe0a4c273485f7fd612336c79
-    GeneratesArchetypeDefinition: 0
+    GeneratesArchetypeDefinition: 1
   InterpolationLocation: 1
   bakedScriptType: Coherence.Generated.CoherenceSyncItem_aaa1b9efe0a4c273485f7fd612336c79,
     Assembly-CSharp
-  approveAuthorityTransferRequests: 1
+  approveAuthorityTransferRequests: 0
   simulationType: 0
-  authorityTransferType: 2
+  authorityTransferType: 1
   orphanedBehavior: 1
   lifetimeType: 1
   uniquenessType: 0
@@ -196,6 +196,7 @@ MonoBehaviour:
   bindings:
   - rid: 58763526822952960
   - rid: 58763636057309220
+  - rid: 58763705005375494
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -310,5 +311,47 @@ MonoBehaviour:
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 58763705005375494
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 58763705005375495
+        routing: 0
+        isPredicted: 0
+        defaultInterpolationPath: 
+        guid: 3bf3f921-005b-4f90-aa53-89999ae51eb7
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+          sharedBinding: {fileID: 0}
+        unityComponent: {fileID: 711164789486740631}
+        coherenceSync: {fileID: 0}
+        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
+    - rid: 58763705005375495
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: Transfer
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - Coherence.Toolkit.CoherenceSync, Coherence.Toolkit
+        - System.UInt32, mscorlib
+        ownerType:
+          assemblyQualifiedName: ShopItem, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []

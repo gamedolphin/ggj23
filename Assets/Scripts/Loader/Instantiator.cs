@@ -5,14 +5,19 @@ using Cysharp.Threading.Tasks;
 
 public class Instantiator
 {
+    private CameraManager cam;
     private IObjectResolver container;
     public int layer;
 
-    public Instantiator(IObjectResolver container, string layer)
+    public Instantiator(IObjectResolver container, string layer,
+                        CameraManager cam)
     {
         this.container = container;
         this.layer = LayerMask.NameToLayer(layer);
+        this.cam = cam;
     }
+
+    public bool IsCurrent => cam.currentLayer == layer;
 
     public T Instantiate<T>(T prefab) where T : Object
     {

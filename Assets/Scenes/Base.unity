@@ -1565,6 +1565,7 @@ MonoBehaviour:
   itemConfig: {fileID: 11400000, guid: a9531bf88bea47b7f80a602cc26819ab, type: 2}
   planetConfig: {fileID: 11400000, guid: 48a9521017f29f8b8be8d6797577dee7, type: 2}
   shipConfig: {fileID: 11400000, guid: 32b1f60a032d5bc228ba0da47c023834, type: 2}
+  emoteConfig: {fileID: 11400000, guid: 6994febcc3e73e7dd8a2e0d4c04f1848, type: 2}
   itemPrefab: {fileID: 711164789486740631, guid: aaa1b9efe0a4c273485f7fd612336c79, type: 3}
   uiManager: {fileID: 565728952}
   cursor: {fileID: 2800000, guid: 5f714bd2d23de5379992c2421cfc0f2a, type: 3}

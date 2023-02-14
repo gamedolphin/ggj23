@@ -38,7 +38,6 @@ public class Celestial : MonoBehaviour, IItemHolder
     public List<PlanetItem> infos = new List<PlanetItem>();
     public event OnTakeItem OnTakeItem;
 
-    private bool showState = false;
     private List<Transform> items = new List<Transform>();
 
     private void Start()

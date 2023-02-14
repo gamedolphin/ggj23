@@ -1,9 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using NaughtyAttributes;
 using VContainer;
+using UnityEngine.UI;
+using Coherence.Toolkit;
 
+[RequireComponent(typeof(CoherenceSync))]
 public class ShipModel : MonoBehaviour, IItemHolder
 {
     [SerializeField] private Sprite[] wing;
@@ -15,6 +19,7 @@ public class ShipModel : MonoBehaviour, IItemHolder
     [SerializeField] private SpriteRenderer topSprite;
     [SerializeField] private SpriteRenderer engineSprite;
     [SerializeField] private SpriteRenderer weaponSprite;
+    [SerializeField] private Image emoteSprite;
 
     [SerializeField] private TextMeshProUGUI nameText;
 
@@ -22,10 +27,33 @@ public class ShipModel : MonoBehaviour, IItemHolder
 
     [HideInInspector] public Manager manager;
 
+    private CoherenceSync _sync;
+    public CoherenceSync sync
+    {
+        get
+        {
+            if (_sync != null)
+            {
+                return _sync;
+            }
+
+            _sync = GetComponent<CoherenceSync>();
+            return _sync;
+        }
+    }
+
+    private Emotes emote;
+    private EmoteConfig config;
+    private CoherenceMonoBridge bridge;
+
     [Inject]
-    public void Construct(Manager manager)
+    public void Construct(Manager manager, Emotes emote,
+                          EmoteConfig config, CoherenceMonoBridge bridge)
     {
         this.manager = manager;
+        this.emote = emote;
+        this.config = config;
+        this.bridge = bridge;
     }
 
     private List<ShopItem> carrying = new List<ShopItem>();
@@ -88,5 +116,48 @@ public class ShipModel : MonoBehaviour, IItemHolder
         weaponSprite.sprite = weapons[rng.Next(0, weapons.Length)];
         topSprite.sprite = top[rng.Next(0, top.Length)];
         wingSprite.sprite = wing[rng.Next(0, wing.Length)];
+
+        this.emote.onClick += OnEmoteClick;
+        emoteSprite.gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        this.emote.onClick -= OnEmoteClick;
+    }
+
+    private void OnEmoteClick(int index)
+    {
+        if (bridge.isConnected)
+        {
+            sync.SendCommand<ShipModel>(nameof(ShipModel.OnEmote),
+                                    Coherence.MessageTarget.All,
+                                    index);
+        }
+        else
+        {
+            OnEmote(index);
+        }
+    }
+
+    private Coroutine hider;
+
+    public void OnEmote(int index)
+    {
+        var spr = config.emoteList[index];
+        emoteSprite.sprite = spr;
+        emoteSprite.gameObject.SetActive(true);
+        if (hider != null)
+        {
+            StopCoroutine(hider);
+        }
+
+        hider = StartCoroutine(HideEmote());
+    }
+
+    private IEnumerator HideEmote()
+    {
+        yield return new WaitForSeconds(3);
+        emoteSprite.gameObject.SetActive(false);
     }
 }

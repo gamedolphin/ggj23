@@ -32,6 +32,15 @@ public class ItemSprite : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("HERE");
+        if (!manager.IsCurrent)
+        {
+            return;
+        }
+
+        if (manager.player != null &&
+            Vector3.Distance(manager.player.transform.position, transform.position) < 2)
+        {
+            item.OnTransfer(manager.player);
+        }
     }
 }

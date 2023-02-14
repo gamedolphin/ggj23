@@ -11,6 +11,7 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private ItemConfig itemConfig;
     [SerializeField] private CelestialConfig planetConfig;
     [SerializeField] private ShipConfig shipConfig;
+    [SerializeField] private EmoteConfig emoteConfig;
     [SerializeField] private ShopItem itemPrefab;
     [SerializeField] private UIManager uiManager;
     [SerializeField] private Texture2D cursor;
@@ -23,6 +24,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterInstance(loaderSettings);
         builder.RegisterInstance(planetConfig);
         builder.RegisterInstance(shipConfig);
+        builder.RegisterInstance(emoteConfig);
         builder.RegisterInstance(itemConfig);
         builder.RegisterInstance(itemPrefab);
         builder.RegisterInstance(mainCamera);

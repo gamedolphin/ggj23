@@ -42,12 +42,17 @@ public class ShopItem : MonoBehaviour
 
     private Transform child;
     private ItemConfig items;
+    private Manager manager;
+    private CoherenceMonoBridge bridge;
 
     [Inject]
-    public void Construct(Instantiator container, ItemConfig items)
+    public void Construct(Instantiator container, ItemConfig items,
+                          Manager manager, CoherenceMonoBridge bridge)
     {
         this.container = container;
         this.items = items;
+        this.manager = manager;
+        this.bridge = bridge;
     }
 
     public void Setup(int index)
@@ -67,8 +72,29 @@ public class ShopItem : MonoBehaviour
         GetComponent<SpringJoint2D>().connectedBody = spr.GetComponent<Rigidbody2D>();
 
         child = spr.transform;
+    }
 
-        Debug.Log($"Item held by {holder}");
+    public void OnTransfer(ShipModel player)
+    {
+        if (bridge.isConnected)
+        {
+            sync.SendCommand<ShopItem>(nameof(ShopItem.Transfer),
+                                   Coherence.MessageTarget.AuthorityOnly,
+                                       player.sync, ((uint)bridge.ClientId));
+        }
+        else
+        {
+            transform.SetParent(player.transform);
+        }
+    }
+
+    public void Transfer(CoherenceSync playerSync,
+                         uint clientID)
+    {
+        if (transform.parent != manager.player.transform)
+        {
+            transform.SetParent(playerSync.transform);
+        }
     }
 
     private void Start()

@@ -37,9 +37,9 @@ public class Manager : IStartable, System.IDisposable
 
         this.rng = rng;
         this.playerName = Names.GetRandomName(rng);
-
-        Debug.Log("New manager created");
     }
+
+    public bool IsCurrent => container.IsCurrent;
 
     void IStartable.Start()
     {

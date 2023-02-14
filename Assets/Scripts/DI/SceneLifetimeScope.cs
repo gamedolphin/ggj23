@@ -21,6 +21,7 @@ public class SceneLifetimeScope : LifetimeScope
             return rng;
         }, Lifetime.Scoped).AsSelf();
 
+        builder.RegisterComponentInHierarchy<Emotes>().AsSelf();
         builder.RegisterComponentInHierarchy<CoherenceMonoBridge>().AsSelf();
         builder.Register<Connect>(Lifetime.Scoped).AsSelf();
         builder.RegisterEntryPoint<Manager>(Lifetime.Scoped).AsSelf();

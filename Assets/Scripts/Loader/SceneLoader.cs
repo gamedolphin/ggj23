@@ -79,6 +79,4 @@ public class SceneLoader : IAsyncStartable
 
         this.ui.SetLoading(false);
     }
-
-    private int current = 0;
 }

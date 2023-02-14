@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Play
   settings:
-  - overrideKey: Game1
+  - overrideKey: Game2
     hasCamera: 1
+  - overrideKey: Game1
+    hasCamera: 0
